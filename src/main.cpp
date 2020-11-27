@@ -66,9 +66,14 @@ template<class T, class Compare = std::less<T>>
 void mergesort(T* arr, const int& start, const int& end){ // sort using mergesort method
     if((end - start) <= 1) return; // if the size is less than or equal to 1, the list is sorted so exit
     int middle = (end + start) / 2; // the first index of the 'right' half
-    mergesort(arr, start, middle); // call merge sort on left half of list
-    mergesort(arr, middle, end); // call merge sort on right half of list
+    mergesort<T, Compare>(arr, start, middle); // call merge sort on left half of list
+    mergesort<T, Compare>(arr, middle, end); // call merge sort on right half of list
     merge<T, Compare>(arr, start, middle, end); // merge the two sorted sublists into a sorted list
+}
+
+template<class T, class Compare = std::less<T>>
+void mergesort(T* arr, const int& size){ // use size instead of start and end
+    mergesort<T, Compare>(arr, 0, size); // call start and end merge sort
 }
 
 template<class T, class Compare = std::less<T>>
