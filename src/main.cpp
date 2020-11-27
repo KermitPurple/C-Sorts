@@ -1,11 +1,11 @@
 #include<iostream>
 
 template<class T>
-void print_arr(T* arr, const int& size){
-    std::cout << *arr;
-    for(int i = 1; i < size; i++)
-        std::cout << ", " << arr[i];
-    std::cout << std::endl;
+void print_arr(T* arr, const int& size){ // print an array
+    std::cout << *arr; // print the first element
+    for(int i = 1; i < size; i++) // cycle through array starting at 1
+        std::cout << ", " << arr[i]; // print comment and then an element
+    std::cout << std::endl; // print newline
 }
 
 template<class T>
@@ -71,8 +71,8 @@ void mergesort(T* arr, const int& start, const int& end){ // sort using mergesor
 
 int main(){
 
-    const int SIZE = 8;
-    int arr[SIZE] = {10, 5, 3, 8, 9, 4, 11, 6};
+    const int SIZE = 9;
+    int arr[SIZE] = {10, 5, 3, 8, 9, 4, 11, 6, -1};
     print_arr(arr, SIZE);
     // bubblesort(arr, SIZE); // works
     // selectionsort(arr, SIZE); // works
