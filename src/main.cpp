@@ -24,13 +24,13 @@ void bubblesort(T* arr, const int& size){ // sort using bubble method
 }
 
 template<class T>
-void selectionsort(T* arr, const int& size){
-    for(int i = 0; i < size; i++){
-        int smallest_index = i;
-        for(int j = i + 1; j < size; j++)
-            if(arr[j] < arr[smallest_index])
-                smallest_index = j;
-        swap(arr[smallest_index], arr[i]);
+void selectionsort(T* arr, const int& size){ // sort using selection method
+    for(int i = 0; i < size; i++){ // cycle through indicies
+        int smallest_index = i; // smallest index starts at current index
+        for(int j = i + 1; j < size; j++) // cycle through indicies starting at 1 after i
+            if(arr[j] < arr[smallest_index]) // if the current index does not represent the smallest value
+                smallest_index = j; // change smallest index to current
+        swap(arr[smallest_index], arr[i]); // swap the i with the smallest value
     }
 }
 
