@@ -70,6 +70,14 @@ void mergesort(T* arr, const int& start, const int& end){ // sort using mergesor
     merge(arr, start, middle, end); // merge the two sorted sublists into a sorted list
 }
 
+template<class T>
+void insertionsort(T* arr, const int& size){ // sort using insertion method
+    for(int i = 0; i < size; i++) // cycle through list
+        for(int j = i; j > 0; j--) // cycle through starting at i and going backwords
+            if(arr[j] < arr[j - 1]) // if the current is bigger than the previous
+                swap(arr[j], arr[j - 1]); // swap them
+}
+
 void randomize_arr(int* arr, const int& size){ // randomize array
     for(int i = 0; i < size; i++) // cycle through array
         arr[i] = rand() % 100; // set current element in array to a random number between 0 and 99
@@ -84,6 +92,13 @@ int main(){
     std::cout <<"Bubble Sort:\n\tBefore sort: ";
     print_arr(arr, SIZE); // print array
     bubblesort(arr, SIZE); // works
+    std::cout << "\tAfter sort: ";
+    print_arr(arr, SIZE); // print array
+
+    randomize_arr(arr, SIZE); // randomize array
+    std::cout <<"Insertion Sort:\n\tBefore sort: ";
+    print_arr(arr, SIZE); // print array
+    insertionsort(arr, SIZE); // works
     std::cout << "\tAfter sort: ";
     print_arr(arr, SIZE); // print array
 
