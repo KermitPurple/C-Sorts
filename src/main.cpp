@@ -9,7 +9,7 @@ void print_arr(T* arr, const int& size){ // print an array
 }
 
 template<class T>
-void swap(T& x, T& y){
+void swap(T& x, T& y){ // swap two values
     T temp = x;
     x = y;
     y = temp;
