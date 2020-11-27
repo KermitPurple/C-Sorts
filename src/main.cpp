@@ -1,4 +1,5 @@
 #include<iostream>
+#include<time.h>
 
 template<class T>
 void print_arr(T* arr, const int& size){ // print an array
@@ -69,15 +70,35 @@ void mergesort(T* arr, const int& start, const int& end){ // sort using mergesor
     merge(arr, start, middle, end); // merge the two sorted sublists into a sorted list
 }
 
+void randomize_arr(int* arr, const int& size){ // randomize array
+    for(int i = 0; i < size; i++) // cycle through array
+        arr[i] = rand() % 100; // set current element in array to a random number between 0 and 99
+}
+
 int main(){
+    srand(time(NULL)); // get random seed for rand function
+    const int SIZE = 20; // size of array
+    int arr[SIZE]; // create array
 
-    const int SIZE = 9;
-    int arr[SIZE] = {10, 5, 3, 8, 9, 4, 11, 6, -1};
-    print_arr(arr, SIZE);
-    // bubblesort(arr, SIZE); // works
-    // selectionsort(arr, SIZE); // works
+    randomize_arr(arr, SIZE); // randomize array
+    std::cout <<"Bubble Sort:\n\tBefore sort: ";
+    print_arr(arr, SIZE); // print array
+    bubblesort(arr, SIZE); // works
+    std::cout << "\tAfter sort: ";
+    print_arr(arr, SIZE); // print array
+
+    randomize_arr(arr, SIZE); // randomize array
+    std::cout <<"Selection Sort:\n\tBefore sort: ";
+    print_arr(arr, SIZE); // print array
+    selectionsort(arr, SIZE); // works
+    std::cout << "\tAfter sort: ";
+    print_arr(arr, SIZE); // print array
+
+    randomize_arr(arr, SIZE); // randomize array
+    std::cout <<"Merge Sort:\n\tBefore sort: ";
+    print_arr(arr, SIZE); // print array
     mergesort(arr, 0, SIZE); // works
-    print_arr(arr, SIZE);
-
+    std::cout << "\tAfter sort: ";
+    print_arr(arr, SIZE); // print array
     return 0;
 }
