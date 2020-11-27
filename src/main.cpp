@@ -1,3 +1,4 @@
+#include<functional>
 #include<iostream>
 #include<time.h>
 
@@ -16,26 +17,26 @@ void swap(T& x, T& y){ // swap two values
     y = temp;
 }
 
-template<class T>
+template<class T, class Compare = std::less<T>>
 void bubblesort(T* arr, const int& size){ // sort using bubble method
     for(int i = size; i >= 1; i--) // cycle through indicies starting at size and ending at 1
         for(int j = 1; j < i; j++) // cylce through indicies starting at 1 and ending at i
-            if(arr[j - 1] > arr[j]) // if the previous element is greather than the current
+            if(Compare()(arr[j], arr[j - 1])) // if the previous element is greather than the current
                 swap(arr[j - 1], arr[j]); // swap them
 }
 
-template<class T>
+template<class T, class Compare = std::less<T>>
 void selectionsort(T* arr, const int& size){ // sort using selection method
     for(int i = 0; i < size; i++){ // cycle through indicies
-        int smallest_index = i; // smallest index starts at current index
+        int smallest_largest_index = i; // smallest/largest index starts at current index
         for(int j = i + 1; j < size; j++) // cycle through indicies starting at 1 after i
-            if(arr[j] < arr[smallest_index]) // if the current index does not represent the smallest value
-                smallest_index = j; // change smallest index to current
-        swap(arr[smallest_index], arr[i]); // swap the i with the smallest value
+            if(Compare()(arr[j],arr[smallest_largest_index])) // if the current index does not represent the smallest/largest value
+                smallest_largest_index = j; // change smallest index to current
+        swap(arr[smallest_largest_index], arr[i]); // swap the i with the smallest value
     }
 }
 
-template<class T>
+template<class T, class Compare = std::less<T>>
 void merge(T* arr, const int& start, const int& middle, const int& end){ // merge two sorted lists into one sorted list
     T* left = new T[middle - start]; // create the left array
     for(int i = start; i < middle; i++) // copy the left half of the values into the left array
@@ -51,7 +52,7 @@ void merge(T* arr, const int& start, const int& middle, const int& end){ // merg
         else if(ri < end - middle && li >= middle - start) // if only items are in the right
             arr[i] = right[ri++]; // copy item into main array and increment index
         else if(li < middle - start && ri < end - middle){ // if items are in right and left
-            if(left[li] < right[ri]) // if first item in left list is greather than first item in right list
+            if(Compare()(left[li], right[ri])) // if first item in left list is greater than first item in right list
                 arr[i] = left[li++]; // copy item into main array and increment index
             else // left is greater than or equal to right
                 arr[i] = right[ri++]; // copy item into main array and increment index
@@ -61,20 +62,20 @@ void merge(T* arr, const int& start, const int& middle, const int& end){ // merg
     delete[] right; // delete values in right array
 }
 
-template<class T>
+template<class T, class Compare = std::less<T>>
 void mergesort(T* arr, const int& start, const int& end){ // sort using mergesort method
     if((end - start) <= 1) return; // if the size is less than or equal to 1, the list is sorted so exit
     int middle = (end + start) / 2; // the first index of the 'right' half
     mergesort(arr, start, middle); // call merge sort on left half of list
     mergesort(arr, middle, end); // call merge sort on right half of list
-    merge(arr, start, middle, end); // merge the two sorted sublists into a sorted list
+    merge<T, Compare>(arr, start, middle, end); // merge the two sorted sublists into a sorted list
 }
 
-template<class T>
+template<class T, class Compare = std::less<T>>
 void insertionsort(T* arr, const int& size){ // sort using insertion method
     for(int i = 0; i < size; i++) // cycle through list
         for(int j = i; j > 0; j--) // cycle through starting at i and going backwords
-            if(arr[j] < arr[j - 1]) // if the current is bigger than the previous
+            if(Compare()(arr[j], arr[j - 1])) // if the current is bigger than the previous
                 swap(arr[j], arr[j - 1]); // swap them
 }
 
