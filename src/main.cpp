@@ -102,28 +102,9 @@ int main(){
     srand(time(NULL)); // get random seed for rand function
     const int SIZE = 20; // size of array
     int arr[SIZE]; // create array
-
     display_sort_test(arr, SIZE, "Bubble", bubblesort);
-
-    randomize_arr(arr, SIZE); // randomize array
-    std::cout <<"Selection Sort:\n\tBefore sort: ";
-    print_arr(arr, SIZE); // print array
-    selectionsort(arr, SIZE); // works
-    std::cout << "\tAfter sort: ";
-    print_arr(arr, SIZE); // print array
-
-    randomize_arr(arr, SIZE); // randomize array
-    std::cout <<"Merge Sort:\n\tBefore sort: ";
-    print_arr(arr, SIZE); // print array
-    mergesort(arr, 0, SIZE); // works
-    std::cout << "\tAfter sort: ";
-    print_arr(arr, SIZE); // print array
-
-    randomize_arr(arr, SIZE); // randomize array
-    std::cout <<"Insertion Sort:\n\tBefore sort: ";
-    print_arr(arr, SIZE); // print array
-    insertionsort(arr, SIZE); // works
-    std::cout << "\tAfter sort: ";
-    print_arr(arr, SIZE); // print array
+    display_sort_test(arr, SIZE, "Selection", selectionsort);
+    display_sort_test(arr, SIZE, "Merge", mergesort);
+    display_sort_test(arr, SIZE, "Insertion", insertionsort);
     return 0;
 }
