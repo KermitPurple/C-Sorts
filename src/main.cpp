@@ -16,11 +16,11 @@ void swap(T& x, T& y){ // swap two values
 }
 
 template<class T>
-void bubblesort(T* arr, const int& size){
-    for(int i = size; i >= 1; i--)
-        for(int j = 1; j < i; j++)
-            if(arr[j - 1] > arr[j])
-                swap(arr[j - 1], arr[j]);
+void bubblesort(T* arr, const int& size){ // sort using bubble method
+    for(int i = size; i >= 1; i--) // cycle through indicies starting at size and ending at 1
+        for(int j = 1; j < i; j++) // cylce through indicies starting at 1 and ending at i
+            if(arr[j - 1] > arr[j]) // if the previous element is greather than the current
+                swap(arr[j - 1], arr[j]); // swap them
 }
 
 template<class T>
