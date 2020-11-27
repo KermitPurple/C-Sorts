@@ -84,17 +84,21 @@ void randomize_arr(int* arr, const int& size){ // randomize array
         arr[i] = rand() % 100; // set current element in array to a random number between 0 and 99
 }
 
+void display_sort_test(int* arr, const int& size, const char* sort_name, void(*custom_sort)(int*, const int&)){
+    randomize_arr(arr, size); // randomize array
+    std::cout << sort_name << " Sort:\n\tBefore sort: ";
+    print_arr(arr, size); // print array
+    custom_sort(arr, size); // works
+    std::cout << "\tAfter sort: ";
+    print_arr(arr, size); // print array
+}
+
 int main(){
     srand(time(NULL)); // get random seed for rand function
     const int SIZE = 20; // size of array
     int arr[SIZE]; // create array
 
-    randomize_arr(arr, SIZE); // randomize array
-    std::cout <<"Bubble Sort:\n\tBefore sort: ";
-    print_arr(arr, SIZE); // print array
-    bubblesort(arr, SIZE); // works
-    std::cout << "\tAfter sort: ";
-    print_arr(arr, SIZE); // print array
+    display_sort_test(arr, SIZE, "Bubble", bubblesort);
 
     randomize_arr(arr, SIZE); // randomize array
     std::cout <<"Selection Sort:\n\tBefore sort: ";
