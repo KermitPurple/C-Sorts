@@ -97,13 +97,6 @@ int main(){
     print_arr(arr, SIZE); // print array
 
     randomize_arr(arr, SIZE); // randomize array
-    std::cout <<"Insertion Sort:\n\tBefore sort: ";
-    print_arr(arr, SIZE); // print array
-    insertionsort(arr, SIZE); // works
-    std::cout << "\tAfter sort: ";
-    print_arr(arr, SIZE); // print array
-
-    randomize_arr(arr, SIZE); // randomize array
     std::cout <<"Selection Sort:\n\tBefore sort: ";
     print_arr(arr, SIZE); // print array
     selectionsort(arr, SIZE); // works
@@ -114,6 +107,13 @@ int main(){
     std::cout <<"Merge Sort:\n\tBefore sort: ";
     print_arr(arr, SIZE); // print array
     mergesort(arr, 0, SIZE); // works
+    std::cout << "\tAfter sort: ";
+    print_arr(arr, SIZE); // print array
+
+    randomize_arr(arr, SIZE); // randomize array
+    std::cout <<"Insertion Sort:\n\tBefore sort: ";
+    print_arr(arr, SIZE); // print array
+    insertionsort(arr, SIZE); // works
     std::cout << "\tAfter sort: ";
     print_arr(arr, SIZE); // print array
     return 0;
